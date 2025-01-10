@@ -12,20 +12,16 @@ import sys
 def find_size(N,M,square):
     for r in range(N-s+1):
         for c in range(M-s+1):
-            if (square[r][0][c] == square[r][0][c+s-1] == square[r+s-1][0][c] == square[r+s-1][0][c+s-1]):
+            if (square[r][c] == square[r][c+s-1] == square[r+s-1][c] == square[r+s-1][c+s-1]):
                 return True
     return False
 
-
-if __name__=='__main__':
-    N, M = map(int, input().split())
-    square = []
-    for _ in range(N):
-        square.append(list(sys.stdin.readline().split()))
-    side = min(N,M)
-    for s in range(side,0,-1):
-        if find_size(N,M,square):
-            print(s**2)
-            break
+N, M = map(int, input().split())
+square = [list(map(int, list(input()))) for _ in range(N)]
+side = min(N,M)
+for s in range(side,0,-1):
+    if find_size(N,M,square):
+        print(s**2)
+        break
 
 
